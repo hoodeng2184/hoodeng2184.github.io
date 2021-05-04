@@ -2,114 +2,143 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>2021.03.19</title>
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ho_ho1</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <style>
-        /* reset */
-        * {margin: 0; padding: 0; font-size: 24px; font-weight: bold; color: #fff;}
-        a {color: #333; text-decoration: none;}
-        li {list-style: none;}
-        table {border-spacing: 0;}
-        .clearfix::before, .clearfix::after {display: block; content:''; clear:both;}
+        *{margin: 0; padding: 0; list-style: none; text-decoration: none;}
+        .clearfix::before, .clearfix::after {display: block; content: ''; clear: both;}
         
-        #wrap {width: 1500px; margin: 0px auto;}
+        body { position: relative;
+         cursor: none;
+        background-color: rgb(7, 0, 158); 
+         width: 1920px; height: 2000px;}
+        h1 { color: aquamarine; display: none;}
+        .cursor_item { 
+        position: absolute; left: -50px; top: -50px;
+                    z-index: 1002; 
+            }
         
-        /* header */
-        #header {text-align: center;}
-        #header .logo {float: left; width:250px; height:100px; line-height: 100px;padding-bottom: 30px;}
-        #header .logo img {width: 180px; height: 140px;}
+            /*  메뉴 */
+        .nav { width: 400px; background-color: rgb(255, 255, 255);
+         float: right; padding-right: 500px; padding-top: 30px; }
+        .nav li { position: relative; margin-top: 100px; padding-bottom: 50px; width: 70%;
+         height: 700px; text-align: center; background: rgb(255, 255, 255); padding: 40px; padding-left: 70px;
+          padding-right: 70px;}
+        .nav li a { padding-top: 100px; width: 50%; display: block; color: rgb(11, 44, 95); background: rgb(255, 255, 255);
+         padding : 15px; border-radius: 
+        30px 30px 30px 30px; border-width: 2px;
+                    border-style: solid; font-family: 'Source Sans Pro', sans-serif; font-size: 24px; font-weight: bold; 
+                    margin-bottom: 24px;}
+        .nav li a:hover {background: rgb(239, 133, 53);}
 
-        /* banner */
-        #banner { float: left; position: relative; width: 1500px; overflow: hidden; height: 360px; background-color: aqua }
-        #banner img {width: 100%; display: block;height: 720px;}
         
         
+            /*  wave */
+        section {position: relative; width: 100%; height: 100vh; background-color: rgb(255, 255, 255); overflow: hidden;}
+        section .wave {position: absolute; bottom: 0; left: 0; width: 100%; height: 800px; 
+        background: url(img/wave1.png); background-size : 1920px 800px;}
+        section .wave.wave1{ animation: animate 17s linear infinite; z-index: 1000; opacity: 1; animation-delay: 0s; bottom: 0;}
+        section .wave.wave2{ animation: animate2 23s linear infinite; z-index: 998; 
+        opacity: 1; animation-delay: -5s; bottom: 10px; background: url(img/wave3.png);  background-size : 1920px 800px;}
+        .boat { animation : flow 35s infinite; position:absolute;  background: url(img/배.png); width: 300px; 
+        height: 200px; z-index: 999; left: 350px; bottom: 140px;}
+        section .tube{ position:absolute; width: 150px; height: 130px; z-index: 1001; background: url(img/튜브1.png);bottom:150px; left: 1300px;
+                        animation : bounce 7s  infinite;}
         
-        
-        .nav { padding: 50px; float: right; width:600px; height:360px; background-color: azure}
-       .nav li { float: left; width: 200px; text-align: center;  background-color:white; position: relative; border-radius: 30px; }
-       .nav li a {padding: 10px;display: block; color:black;border-radius: 30px;}
-       .nav li a:hover {background: rgba(0,0,0,0.4); }
+        /* footer */
+        .footer { width: 100%; height: 100px; text-align: center; font-family: 'Source Sans Pro', sans-serif; font-size: 20px;
+                    margin-top: 1980px; padding: 20px; color: azure;
+        }
 
+        @keyframes animate {
+            0% {
+                background-position-X : -500px;
+            }
+            100% {
+                background-position-X : 1000px;
+            }
+        }
+        @keyframes animate2 {
+            100% {
+                background-position-X : 0;
+            }
+            0% {
+                background-position-X : 1000px;
+            }
+        }
+        @keyframes bounce {
+            10% {
+                height: 130px;
+                width: 150px;      
+                transform: translateY(10px);
+            }
+            50% {
+                height: 130px;
+                width: 150px;
+                transform: translateX(30px);
+               
+            }
+        }
+        @keyframes flow {
+            0% {
+                height: 300px;
+                width: 280px;
+                transform: translateY(-20px);
+            }
+            100% {
+                height: 300px;
+                width: 280px;
+                transform: translateX(1000px);
+               
+            }
+            }
+        
+     </style>
+     <script>
+              
+        window.onload =function(){
+              let h1 =document.getElementsByTagName("h1")[0];
+              let cursor_item= document.getElementsByClassName("cursor_item")[0];
+         window.addEventListener ("mousemove",mousefunc,false);
+         function mousefunc(e){
+                  h1.innerHTML = "x:" + e.clientX  + "y:" + e.clientY ;
+                  cursor_item.style.transform = "translate("+ e.clientX + "px," + e.clientY + "px)";
 
-        /* slider */
-        .slider {position: relative;}
-        .slider > div {position: absolute; left: 0; top: 0;}
-        .slider > div img {width: 100%;}
-        .slideList {position: absolute; top: 0; left: 0; width: 800px; height: 360px;}
-
-        /* contents */
-        #contents {text-align: center;}
-        #contents > div {float: left; width: 33.333333%; height: 247px; line-height: 247px;}
-    
-        #footer {height: 100px; line-height: 100px; text-align: center; }
-      
-    </style>
+         }
+         roop();
+      }
+      function loop (){
+                  window.requestAnimationFrame(loop);
+      }
+</script>
 </head>
 <body>
-    
-    <div id="wrap">
-        <header id="header" class="clearfix">
-            <h1 class="logo"><img src="img/%EB%A1%9C%EA%B3%A0.JPG" alt=""></h1>
-            
-        </header>
-        <!-- //header -->
-
-        <section id="banner">
+<h1>text</h1>
+        <div class="cursor_item"><img src="img/커서포인트.png" alt="커서"></div>
+    <section class="clearfix">
+        <div class="tube"></div>
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>      
+        <div class="boat"></div>     
+        <nav class="nav">
+            <ul class="clearfix">
+                <li>
+                    <a href="#">ABOUT</a>
+                    <a href="#">CONTACT</a>
+                    <a href="#">ARCHIVE</a>
+                </li>
+            </ul>
+             </nav>
+             
+    </section>
+    <footer class="footer">
+        <p>Site by HYOJEONG</p>
            
-            <div class="slideList">
-                <div class="slideImg"><img src="img/%ED%83%9C%ED%98%951.jpg" alt="이미지 설명"></div>
-                <div class="slideImg"><img src="img/%ED%83%9C%ED%98%952.jpg" alt="이미지 설명"></div>
-                <div class="slideImg"><img src="img/%ED%83%9C%ED%98%953.png" alt="이미지 설명"></div>
-            </div>
-             <nav class="nav">
-        <ul>
-            <li>
-               <a href="#">gaga</a> 
-            </li>
-            <li>
-               <a href="#">nana</a> 
-            </li>
-            <li>
-               <a href="#">dada</a> 
-            </li>
-        </ul>
-            </nav>
-        </section>
-                   
-
-        <!-- //banner -->
-
-        <section id="contents" class="clearfix">
-            <div class="cont1"><h3>공지사항</h3></div>
-            <div class="cont2"><h3>갤러리</h3></div>
-            <div class="cont3"><h3 class="layerPopup">팝업</h3></div>
-        </section>
-        <!-- //contents -->
-
-        <footer id="footer">
-            <div class="foot1"><h3>로고</h3></div>
-            <div class="foot2"><h3>Copyright</h3></div>
-            <div class="foot3"><h3>SNS</h3></div>
-        </footer>
-        <!-- //footer -->
-    </div>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        var currentIndex = 0;
-
-        setInterval(function(){
-            if(currentIndex < 5){
-                currentIndex++;
-            } else {
-                currentIndex = 0;
-            }
-            var slidePosition = currentIndex * (-360)+"px";
-
-            $(".slideList").animate({ top: slidePosition},400);
-        },3000);
-    </script>
+        <p>All content copyright HYOJEONG 2021-2021 ©</p>
+    </footer>
 </body>
-
 </html>
+
